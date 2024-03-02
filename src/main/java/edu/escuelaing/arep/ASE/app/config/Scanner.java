@@ -6,6 +6,7 @@ import edu.escuelaing.arep.ASE.app.annotation.Controller;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.Arrays;
 import java.util.Map;
 import java.util.function.BiFunction;
 import java.lang.reflect.Type;
@@ -31,7 +32,7 @@ public class Scanner {
         String rutaRaiz = System.getProperty("user.dir");
         String rutaInicio = rutaRaiz + "/target/classes/edu";
 
-        System.out.println();
+    
         this.registry = new Registry();
         try {
             buscarDirectorios(new File(rutaInicio));
@@ -68,9 +69,12 @@ public class Scanner {
         }else{
             String fileName = fileRaiz.getAbsolutePath();
             
-            String classpath = System.getProperty("java.class.path");
+           
             
-            Class c = Class.forName(extractFullyQualifiedClassName(fileName, classpath));
+            String nombre = extractFullyQualifiedClassName(fileName);
+            System.out.println("nombre "+nombre);
+
+            Class c = Class.forName(nombre);
 
             try{
                 registrarMetodo(c);
@@ -82,12 +86,27 @@ public class Scanner {
 
     }
 
-    private String extractFullyQualifiedClassName(String classFilePath, String classpath) {
-        String separator = File.separator;
+    private String extractFullyQualifiedClassName(String classFilePath) {
+        
+        String separator = File.separator.replace("\\","\\\\");
 
-        String relativePath = classFilePath.substring(classpath.length() + 1);
+        String[] secciones = classFilePath.split(separator);
+        int indice = 0;
+        boolean loEncontro = false;
+        while (indice<secciones.length && !loEncontro) {
+            if (secciones[indice].equals("target")) {
+                if(indice+1 < secciones.length && secciones[indice+1].equals("classes")){
+                    loEncontro = true;
+                    indice++;
+                }
+            }
+            indice++;
+            
+        }
+        return String.join(".", Arrays.copyOfRange(secciones, indice, secciones.length))
+                    .replace(".class", "");
 
-        return relativePath.replace(separator, ".").replace(".class", "");
+        
     }
 
 
@@ -96,10 +115,10 @@ public class Scanner {
         Constructor<T> constructor = c.getConstructor();
             
         if (c.isAnnotationPresent(Controller.class)) {
-            System.out.println(":)");
+           
             for(Method method: c.getDeclaredMethods()){
                 if (method.isAnnotationPresent(RequestMapping.class)) {
-                    System.out.println(":) :)");
+                    
                     RequestMapping requestMapping = method.getAnnotation(RequestMapping.class);
                     Class<?> retorno = method.getReturnType();
                     
