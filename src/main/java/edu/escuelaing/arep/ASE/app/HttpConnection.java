@@ -28,6 +28,7 @@ public class HttpConnection {
     public String getKey(){
         return key;
     }
+    
     /* 
         * Trae la informacion de la pelicula
         * @param nameMovie nombre de la pelicula que se desea consultar

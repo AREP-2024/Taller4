@@ -39,6 +39,56 @@ Ahora de debe poner a ejecutar el servidor:
 ```
 mvn exec:java -Dexec.mainClass="edu.escuelaing.arep.ASE.app.HttpServer"
 ```
+En su browser de preferencia coloque las siguientes URL para poder ver la aplicación web en ejecución: 
+
+* La API de películas: 
+```
+http://localhost:35000/pagina.html
+```
+![](imagenes/pagina.png)
+
+* Pagina web creada con html, css, JavaScript y una imagen (página web personalizada): 
+```
+http://localhost:35000/mokepon.html
+```
+![](imagenes/mokepon_html.png)
+
+* El archivo css:
+```
+http://localhost:35000/styles.css
+```
+![](imagenes/css.png)
+
+* El archivo JavaScript:
+```
+http://localhost:35000/mokepon.js
+```
+![](imagenes/js.png)
+
+* La imagen .png:
+```
+http://localhost:35000/Tierra.png
+```
+![](imagenes/imagen.png)
+
+* Para la petición GET creada en el controlador base, usted podrá evidenciar su funcionamiento tanto en browser como en Postman :
+    * En el browser use la siguiente URL:
+    ```
+    http://localhost:35000/Luisa
+    ```
+    ![](imagenes/Get_B.png)
+
+    * En Postman haga uso del método GET junto con la siguiente URL:
+    ```
+    http://localhost:35000/Luisa
+    ```
+    ![](imagenes/Get_P.png)
+
+* Para la función POST creada en el controlador base, usted podrá evidenciar su funcionamiento con Postman:
+```
+http://localhost:35000/Luisa
+```
+![](imagenes/Post_P.png)
 
 ## Corriendo Test
 Se ejecuta el siguiente comando:
@@ -70,12 +120,15 @@ Dentro de esta arquitectura podrá encontrar los siguientes paquetes:
     * La clase **HttpFunction** es un manejador para los endpoint del servidor Http.
     * La clase **Metodo** es una clase tipo enum donde se especifican las constantes GET y POST.
     * La clase **Registry** es el registro que maneja y almacena los endPoints con sus correspondientes handlers, permitiendo el enrutamiento de solicitudes Http en el servidor web.
-    * La clase **Request**
-    * La clase
+    * La clase **Request** va a servir para abstraer el contenido de una peticin http.
+    * La clase **Response** va a´servir para abstraer el contenido de una respuesta http.
 
-
-
-
+* src\main\java\edu\escuelaing\arep\ASE\app\resources\public: En este paquete usted podra encontrar todos los archivos estaticos como lo son:
+    * mokepon.html
+    * mokepon.js
+    * pagina.html
+    * styles.css
+    * Tierra.png
 
 ## Construido con
 

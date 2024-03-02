@@ -20,6 +20,13 @@ import edu.escuelaing.arep.ASE.app.http.Response;
 public class Scanner {
     private Registry registry;
 
+    /*
+        * Constructor de Scanner que inicializa el escaneo de un directorio en especifico
+        * @param controlador la ruta del controlador para iniciar el escaneo
+        * @throws FileNotFoundException si no puede encontrar un archivo o directorio especifico.
+        * @throws ClassNotFoundException si la clase no se puede cargar durante el escaneo.
+     */
+
     public Scanner(String controlador) throws FileNotFoundException, ClassNotFoundException{
         String rutaRaiz = System.getProperty("user.dir");
         String rutaInicio = rutaRaiz + "/target/classes/edu";
@@ -35,6 +42,11 @@ public class Scanner {
         }
     }
 
+    /*
+        * Constructor de Scanner que llama al constructor sin argumentos.
+        * @throws FileNotFoundException si no puede encontrar un archivo o directorio especifico.
+        * @throws ClassNotFoundException si la clase no se puede cargar durante el escaneo.
+    */
     public Scanner() throws FileNotFoundException, ClassNotFoundException{
         this("");        
     }

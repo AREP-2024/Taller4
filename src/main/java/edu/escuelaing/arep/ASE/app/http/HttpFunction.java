@@ -23,9 +23,9 @@ public class HttpFunction {
 
 
     /*
-     * se utiliza para determinar si el método HTTP asociado con ese objeto es igual al método HTTP proporcionado como argumento
-     * @param metodoHttp el metodoHttp que se va a verificar
-     * @return si el metodoHttp es igual al metodoHttp del objeto
+        * se utiliza para determinar si el método HTTP asociado con ese objeto es igual al método HTTP proporcionado como argumento
+        * @param metodoHttp el metodoHttp que se va a verificar
+        * @return si el metodoHttp es igual al metodoHttp del objeto
      */
     public boolean verificarMetodoHttp(String metodoHttp) {
         return this.metodoHttp.equals(metodoHttp);
